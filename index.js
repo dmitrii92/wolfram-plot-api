@@ -9,7 +9,6 @@ const waApi = WolframAlphaAPI(apiKey);
 
 app.get("/plot", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
-  console.log(req.query);
 
   waApi
     .getFull({ i: req.query.expression, plotwidth: 400, width: 400 })
@@ -25,14 +24,13 @@ app.get("/plot", (req, res) => {
               imgWidth: subpod.img.width,
               imgHeigth: subpod.img.heigth,
             };
-            console.log(subpod);
             return;
           });
         }
       });
 
       res.send(img);
-    }, console.error)
+    })
     .catch((reason) => {
       res.send(reason);
     });
