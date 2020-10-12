@@ -15,7 +15,6 @@ app.get("/plot", (req, res) => {
     .then((wolframData) => {
       if (wolframData.success === true) {
         const pods = wolframData.pods;
-        console.log(wolframData);
         let img;
         pods.map((pod) => {
           if ("Plot" === pod.title) {
